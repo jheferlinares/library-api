@@ -36,7 +36,7 @@ const swaggerOptions = {
     servers: [
       {
         url: process.env.NODE_ENV === 'production'
-          ? ''
+          ? 'https://library-api-ecsu.onrender.com'
           : `http://localhost:${PORT}`,
         description: process.env.NODE_ENV === 'production' ? 'Production server' : 'Development server',
       },
