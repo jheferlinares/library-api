@@ -1,0 +1,62 @@
+### Get all authors
+GET http://localhost:8080/authors
+
+### Create an author
+POST http://localhost:8080/authors
+Content-Type: application/json
+
+{
+  "firstName": "J.K.",
+  "lastName": "Rowling",
+  "biography": "British author best known for the Harry Potter series.",
+  "birthDate": "1965-07-31",
+  "nationality": "British"
+}
+
+### Get author by ID (replace with actual ID)
+GET http://localhost:8080/authors/682f887a6d608439c5a89f13
+
+### Update author (replace with actual ID)
+PUT http://localhost:8080/authors/682f887a6d608439c5a89f13
+Content-Type: application/json
+
+{
+  "biography": "British author best known for the Harry Potter series and Fantastic Beasts."
+}
+
+### Delete author (replace with actual ID)
+DELETE http://localhost:8080/authors/682f887a6d608439c5a89f13
+
+### Get all books
+GET http://localhost:8080/books
+
+### Create a book (replace author ID with actual ID)
+POST http://localhost:8080/books
+Content-Type: application/json
+
+{
+  "title": "Harry Potter and the Philosopher's Stone",
+  "author": "682f892eed835bf20c466bc7",
+  "isbn": "9780747532743",
+  "publishYear": 1997,
+  "genre": "Fantasy",
+  "description": "The first novel in the Harry Potter series.",
+  "pageCount": 223,
+  "language": "English",
+  "publisher": "Bloomsbury",
+  "available": true
+}
+
+### Get book by ID (replace with actual ID)
+GET http://localhost:8080/books/64f5b8e7b1b4d5a3c9d8e7f7
+
+### Update book (replace with actual ID)
+PUT http://localhost:8080/books/64f5b8e7b1b4d5a3c9d8e7f7
+Content-Type: application/json
+
+{
+  "available": false
+}
+
+### Delete book (replace with actual ID)
+DELETE http://localhost:8080/books/682f890bed835bf20c466bc4
