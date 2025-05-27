@@ -6,11 +6,11 @@ POST http://localhost:8080/authors
 Content-Type: application/json
 
 {
-  "firstName": "J.K.",
-  "lastName": "Rowling",
-  "biography": "British author best known for the Harry Potter series.",
-  "birthDate": "1965-07-31",
-  "nationality": "British"
+  "firstName": "Haruki",
+  "lastName": "Murakami",
+  "biography": "Contemporary Japanese author known for blending surrealism with everyday life.",
+  "birthDate": "1949-01-12",
+  "nationality": "Japanese"
 }
 
 ### Get author by ID (replace with actual ID)
@@ -35,16 +35,15 @@ POST http://localhost:8080/books
 Content-Type: application/json
 
 {
-  "title": "Harry Potter and the Philosopher's Stone",
-  "author": "682f892eed835bf20c466bc7",
-  "isbn": "9780747532743",
-  "publishYear": 1997,
-  "genre": "Fantasy",
-  "description": "The first novel in the Harry Potter series.",
-  "pageCount": 223,
-  "language": "English",
-  "publisher": "Bloomsbury",
-  "available": true
+  "title": "Norwegian Wood",
+  "author": "Haruki Murakami",
+  "isbn": "9780375704024",
+  "publishYear": 1987,
+  "genre": "Coming-of-Age",
+  "description": "A nostalgic look at youth, love, and loss set in 1960s Tokyo.",
+  "pageCount": 296,
+  "language": "Japanese",
+  "publisher": "Kodansha"
 }
 
 ### Get book by ID (replace with actual ID)
