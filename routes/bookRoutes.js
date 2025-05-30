@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bookController = require('../controllers/bookController');
+const { protect, restrictTo } = require('../middleware/authMiddleware');
 
 /**
  * @swagger
@@ -47,6 +48,8 @@ router.get('/:id', bookController.getBookById);
  *   post:
  *     summary: Create a new book
  *     tags: [Books]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -91,10 +94,12 @@ router.get('/:id', bookController.getBookById);
  *         description: Book created successfully
  *       400:
  *         description: Invalid input data
+ *       401:
+ *         description: Not authorized
  *       500:
  *         description: Server error
  */
-router.post('/', bookController.createBook);
+router.post('/', protect, bookController.createBook);
 
 /**
  * @swagger
@@ -102,6 +107,8 @@ router.post('/', bookController.createBook);
  *   put:
  *     summary: Update a book
  *     tags: [Books]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -142,12 +149,14 @@ router.post('/', bookController.createBook);
  *         description: Book updated successfully
  *       400:
  *         description: Invalid input data
+ *       401:
+ *         description: Not authorized
  *       404:
  *         description: Book not found
  *       500:
  *         description: Server error
  */
-router.put('/:id', bookController.updateBook);
+router.put('/:id', protect, bookController.updateBook);
 
 /**
  * @swagger
@@ -155,6 +164,8 @@ router.put('/:id', bookController.updateBook);
  *   delete:
  *     summary: Delete a book
  *     tags: [Books]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -167,11 +178,16 @@ router.put('/:id', bookController.updateBook);
  *         description: Book deleted successfully
  *       400:
  *         description: Invalid ID format
+ *       401:
+ *         description: Not authorized
+ *       403:
+ *         description: Forbidden - Admin only
  *       404:
  *         description: Book not found
  *       500:
  *         description: Server error
  */
-router.delete('/:id', bookController.deleteBook);
+router.delete('/:id', protect, restrictTo('admin'), bookController.deleteBook);
 
 module.exports = router;
+

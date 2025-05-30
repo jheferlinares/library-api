@@ -12,7 +12,6 @@ exports.getAllAuthors = async (req, res) => {
   }
 };
 
-// Get a single author
 exports.getAuthorById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -34,7 +33,6 @@ exports.getAuthorById = async (req, res) => {
   }
 };
 
-// Create a new author
 exports.createAuthor = async (req, res) => {
   try {
     const { firstName, lastName, biography, birthDate, nationality } = req.body;
@@ -59,7 +57,6 @@ exports.createAuthor = async (req, res) => {
   }
 };
 
-// Update an author
 exports.updateAuthor = async (req, res) => {
   try {
     const { id } = req.params;
@@ -91,7 +88,6 @@ exports.updateAuthor = async (req, res) => {
   }
 };
 
-// Delete an author
 exports.deleteAuthor = async (req, res) => {
   try {
     const { id } = req.params;

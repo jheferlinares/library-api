@@ -1,9 +1,40 @@
+### Register a new user
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+### Login
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+### Get current user (requires token)
+GET http://localhost:8080/auth/me
+Authorization: Bearer 
+
+### Logout (requires token)
+GET http://localhost:8080/auth/logout
+Authorization: Bearer-
+
+### GitHub Authentication
+# Visit http://localhost:8080/auth/github
+
 ### Get all authors
 GET http://localhost:8080/authors
 
-### Create an author
+### Create an author (requires token)
 POST http://localhost:8080/authors
 Content-Type: application/json
+Authorization: Bearer 
 
 {
   "firstName": "Haruki",
@@ -13,26 +44,30 @@ Content-Type: application/json
   "nationality": "Japanese"
 }
 
-### Get author by ID (replace with actual ID)
-GET http://localhost:8080/authors/682f887a6d608439c5a89f13
+### Get author by ID
+GET http://localhost:8080/authors/
 
-### Update author (replace with actual ID)
-PUT http://localhost:8080/authors/682f887a6d608439c5a89f13
+### Update author (requires token and ID)
+PUT http://localhost:8080/authors/
 Content-Type: application/json
+Authorization: Bearer 
 
 {
   "biography": "British author best known for the Harry Potter series and Fantastic Beasts."
 }
 
-### Delete author (replace with actual ID)
-DELETE http://localhost:8080/authors/682f887a6d608439c5a89f13
+### Delete author (requires admin token and ID)
+DELETE http://localhost:8080/authors/
+Authorization: Bearer 
+
 
 ### Get all books
 GET http://localhost:8080/books
 
-### Create a book (replace author ID with actual ID)
+### Create a book (requires token)
 POST http://localhost:8080/books
 Content-Type: application/json
+Authorization: Bearer 
 
 {
   "title": "Norwegian Wood",
@@ -46,16 +81,18 @@ Content-Type: application/json
   "publisher": "Kodansha"
 }
 
-### Get book by ID (replace with actual ID)
-GET http://localhost:8080/books/64f5b8e7b1b4d5a3c9d8e7f7
+### Get book by ID
+GET http://localhost:8080/books/
 
-### Update book (replace with actual ID)
-PUT http://localhost:8080/books/64f5b8e7b1b4d5a3c9d8e7f7
+### Update book (requires token and ID)
+PUT http://localhost:8080/books/
 Content-Type: application/json
+Authorization: Bearer 
 
 {
   "available": false
 }
 
-### Delete book (replace with actual ID)
-DELETE http://localhost:8080/books/682f890bed835bf20c466bc4
+### Delete book (requires admin token and ID)
+DELETE http://localhost:8080/books/
+Authorization: Bearer 

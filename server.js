@@ -4,6 +4,9 @@ const cors = require('cors');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 require('dotenv').config();
+const session = require('express-session');
+const passport = require('./config/passport');
+
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -11,6 +14,15 @@ const PORT = process.env.PORT || 8080;
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
@@ -23,6 +35,7 @@ mongoose.connect(process.env.MONGODB_URI)
 // Import routes
 const bookRoutes = require('./routes/bookRoutes');
 const authorRoutes = require('./routes/authorRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 // Swagger configuration
 const swaggerOptions = {
@@ -41,6 +54,15 @@ const swaggerOptions = {
         description: process.env.NODE_ENV === 'production' ? 'Production server' : 'Development server',
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT'
+        }
+      }
+    }
   },
   apis: ['./routes/*.js'],
 };
@@ -51,6 +73,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // Use routes
 app.use('/books', bookRoutes);
 app.use('/authors', authorRoutes);
+app.use('/auth', authRoutes);
 
 // Root route
 app.get('/', (req, res) => {

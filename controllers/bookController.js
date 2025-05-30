@@ -11,7 +11,6 @@ exports.getAllBooks = async (req, res) => {
   }
 };
 
-// Get a single book
 exports.getBookById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -33,7 +32,6 @@ exports.getBookById = async (req, res) => {
   }
 };
 
-// Create a new book
 exports.createBook = async (req, res) => {
   try {
     const { title, author, isbn, publishYear, genre, description, pageCount, language, publisher } = req.body;
@@ -63,7 +61,6 @@ exports.createBook = async (req, res) => {
   }
 };
 
-// Update a book
 exports.updateBook = async (req, res) => {
   try {
     const { id } = req.params;
@@ -100,7 +97,6 @@ exports.updateBook = async (req, res) => {
   }
 };
 
-// Delete a book
 exports.deleteBook = async (req, res) => {
   try {
     const { id } = req.params;
